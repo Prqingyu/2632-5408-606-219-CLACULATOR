@@ -15,13 +15,10 @@
     history: loadHistory()
   };
 
-  var EXAMPLES = ['2026', '26.32', '2632', '3226', '326', '3.14', '1729', '1000', '219.5', '1/3'];
-
   /* ---------------- 初始化 ---------------- */
   function init() {
     buildSourcesLine();
     buildKeypad();
-    buildExamples();
     bindEvents();
     renderHistory();
     setInput(state.input);
@@ -54,30 +51,7 @@
     });
   }
 
-  function buildExamples() {
-    var box = $('#examples');
-    EXAMPLES.forEach(function (t) {
-      var chip = document.createElement('button');
-      chip.className = 'chip';
-      chip.type = 'button';
-      chip.textContent = t;
-      chip.addEventListener('click', function () { setInput(t); generate(); });
-      box.appendChild(chip);
-    });
-    var random = document.createElement('button');
-    random.className = 'chip random';
-    random.type = 'button';
-    random.textContent = '🎲 随机';
-    random.addEventListener('click', function () {
-      var n = 1 + Math.floor(Math.random() * 9999);
-      setInput(String(n));
-      generate();
-    });
-    box.appendChild(random);
-  }
-
-  function bindEvents() {
-    $('#generateBtn').addEventListener('click', generate);
+  function bindEvents() {    $('#generateBtn').addEventListener('click', generate);
     $('#nextBtn').addEventListener('click', nextCandidate);
     $('#copyBtn').addEventListener('click', copyExpression);
     $('#deepBtn').addEventListener('click', deepSearch);
