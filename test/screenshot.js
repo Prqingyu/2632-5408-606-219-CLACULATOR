@@ -68,6 +68,17 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   console.log('=== next candidate ===');
   console.log({ before, after, changed: before !== after });
 
+  // 随机按钮
+  await page.click('#randomBtn');
+  await sleep(1800);
+  const randomRead = await page.evaluate(() => ({
+    target: document.querySelector('#targetInput').value,
+    badge: document.querySelector('#modeBadge').textContent,
+    expr: document.querySelector('#expression').innerText
+  }));
+  console.log('=== random ===');
+  console.log(randomRead);
+
   // 手机布局
   await page.setViewport({ width: 420, height: 900, deviceScaleFactor: 2 });
   await sleep(400);

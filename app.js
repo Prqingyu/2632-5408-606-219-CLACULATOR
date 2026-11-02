@@ -51,7 +51,9 @@
     });
   }
 
-  function bindEvents() {    $('#generateBtn').addEventListener('click', generate);
+  function bindEvents() {
+    $('#generateBtn').addEventListener('click', generate);
+    $('#randomBtn').addEventListener('click', randomTarget);
     $('#nextBtn').addEventListener('click', nextCandidate);
     $('#copyBtn').addEventListener('click', copyExpression);
     $('#deepBtn').addEventListener('click', deepSearch);
@@ -98,6 +100,20 @@
     if (state.input.charAt(0) === '-') setInput(state.input.slice(1));
     else setInput('-' + state.input);
     $('#targetInput').focus();
+  }
+
+  function randomTarget() {
+    var roll = Math.random();
+    var text;
+    if (roll < 0.78) {
+      text = String(1 + Math.floor(Math.random() * 9999));
+    } else if (roll < 0.92) {
+      text = String(1 + Math.floor(Math.random() * 9999)) + '.' + String(1 + Math.floor(Math.random() * 99));
+    } else {
+      text = String(1 + Math.floor(Math.random() * 99)) + '/' + String(2 + Math.floor(Math.random() * 99));
+    }
+    setInput(text);
+    generate();
   }
 
   /* ---------------- 选项 ---------------- */
