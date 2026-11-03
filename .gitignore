@@ -6,3 +6,6 @@ __pycache__/
 Thumbs.db
 .vscode/
 .idea/
+.build/
+desktop/stamp.txt
+dist/*.pdb

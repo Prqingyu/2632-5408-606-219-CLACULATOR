@@ -17,12 +17,14 @@
 
 ## 快速开始
 
-双击 **`打开计算器.bat`** 或 **`index.html`**（纯静态，无需服务器、无需联网）。
+- **Windows 桌面版**：双击 **`dist/2632计算器.exe`**（单文件封装，内嵌 WebView2，独立窗口）
+- **网页版**：双击 **`打开计算器.bat`** 或 **`index.html`**（纯静态，无需服务器、无需联网）
 
 ```bash
 npm start          # 可选：http://127.0.0.1:2632 本地预览
 npm test           # 引擎测试
 npm run screenshot # 可选：Edge 无头界面冒烟测试 + 截图
+npm run build:exe  # 可选：重新构建 Windows EXE
 ```
 
 - 输入任意整数 / 小数 / 分数（如 `2026`、`3.14`、`1/3`、`-22`）
@@ -30,6 +32,15 @@ npm run screenshot # 可选：Edge 无头界面冒烟测试 + 截图
 - **🎲 随机数字** 随机生成一个目标（整数 / 小数 / 分数）
 - **加强搜索** 用更久时间尝试更复杂的构造
 - 顶部一排小圆点是当前可用的 8 个给定数字
+
+## Windows 桌面版（EXE）
+
+`dist/2632计算器.exe`（约 1 MB）是 **WinForms + WebView2** 单文件封装：独立窗口、无地址栏，网页 / 图标 / WebView2 运行库全部嵌入 EXE，首次运行解包到 `%LOCALAPPDATA%\2632Calc`。
+
+- 运行：双击 EXE；需要 Windows 10/11 x64 + WebView2 Runtime（系统一般已自带）
+- 未签名，首次运行可能被 SmartScreen 拦截：选「更多信息 → 仍要运行」
+- 构建：`npm run build:exe`，说明见 [desktop/README.md](desktop/README.md)
+- CI 会在 GitHub Actions 的 Windows 环境构建 EXE 并上传 artifact
 
 ## 输出示例（全部通过整串保序校验）
 
@@ -60,12 +71,15 @@ styles.css              样式
 engine.js               计算引擎（保序 bundle + 精确分数 + 兜底）
 app.js                  界面交互
 ALGORITHM.md            算法说明（保序表达式库 / 逆运算搜索 / 精确校验 / 对数兜底）
+desktop/                Windows 桌面封装（launcher.cs / build.ps1 / lib / 图标 / 说明）
+dist/2632计算器.exe      Windows 单文件桌面版（构建产物）
 打开计算器.bat           一键用默认浏览器打开
 scripts/serve.js        零依赖本地静态服务器
 test/engine.test.js     引擎测试（解析 / 保序校验 / 覆盖 / 性能 / 兜底公式）
 test/screenshot.js      无头浏览器界面冒烟测试 + 截图
+test/exe_smoke.js       EXE 打包冒烟测试（通过 WebView2 CDP 验证）
 experiments/            早期可行性验证脚本
-.github/workflows/      CI：自动跑引擎测试
+.github/workflows/      CI：引擎测试 + Windows EXE 构建
 ```
 
 ## 测试

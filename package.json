@@ -1,13 +1,14 @@
 {
   "name": "2632-number-forge",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "private": true,
   "description": "用给定数字构造任意目标数的图形计算器（整串保序规则）",
   "scripts": {
     "test": "node test/engine.test.js",
     "screenshot": "node test/screenshot.js",
-    "start": "node scripts/serve.js"
+    "start": "node scripts/serve.js",
+    "build:exe": "powershell -NoProfile -ExecutionPolicy Bypass -File desktop/build.ps1"
   },
-  "keywords": ["calculator", "number-puzzle", "gui", "static-site"],
+  "keywords": ["calculator", "number-puzzle", "gui", "static-site", "webview2", "winforms"],
   "license": "MIT"
 }

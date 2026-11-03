@@ -14,3 +14,16 @@ jobs:
           node-version: 20
       - name: Engine tests
         run: node test/engine.test.js
+
+  windows-exe:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build desktop EXE
+        shell: powershell
+        run: powershell -NoProfile -ExecutionPolicy Bypass -File desktop/build.ps1
+      - name: Upload EXE artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: 2632-calculator-exe
+          path: dist/*.exe
