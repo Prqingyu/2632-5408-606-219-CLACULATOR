@@ -1,6 +1,8 @@
 # 2632？ · 任意数构造器
 
 > 仓库：https://github.com/Prqingyu/2632-5408-606-219-CLACULATOR
+>
+> 在线版（GitHub Pages）：https://prqingyu.github.io/2632-5408-606-219-CLACULATOR/
 
 用给定的 8 个数字构造任意目标数，带图形界面。
 
